@@ -17,7 +17,6 @@ def main(page: ft.Page):
      )
 
      top_container = ft.Container(
-          # bgcolor="white",
           height=page.window.height * 0.1,
           padding=10,
           content=ft.Row(
