@@ -2,6 +2,7 @@ import flet as ft
 
 def main(page: ft.Page):
      
+     page.bgcolor = "white"
      page.window.full_screen = True
      page.horizontal_alignment = "center"
      page.vertical_alignment = "center"
@@ -17,7 +18,7 @@ def main(page: ft.Page):
 
      top_container = ft.Container(
           # bgcolor="white",
-          height=100,
+          height=page.window.height * 0.1,
           padding=10,
           content=ft.Row(
                
@@ -47,11 +48,71 @@ def main(page: ft.Page):
           icon="Search"
      )
 
+     central_container = ft.Container(
+          expand=True,
+          height=page.window.height * 0.2,
+          padding=10,
+          content=ft.Column(
+          )
+     )
+
+     central_container_row_1 = ft.Row(
+          alignment=ft.MainAxisAlignment.CENTER,
+          controls=[
+               ft.Text(
+                    "Cidade",
+                    font_family="Seagon Medium",
+                    color="white",
+                    size=38,
+                    weight=ft.FontWeight.BOLD
+               )
+          ],
+     )
+
+     central_container_row_2 = ft.Row(
+          alignment=ft.MainAxisAlignment.CENTER,
+          controls=[
+               ft.Image(
+                    src="http://openweathermap.org/img/wn/02d.png",
+                    width=50,
+                    height=50
+               )
+          ],
+     )
+
+     central_container_row_3 = ft.Row(
+          alignment=ft.MainAxisAlignment.CENTER,
+          controls=[
+               ft.Text(
+                    "38°",
+                    font_family="Seagon Medium",
+                    color="white",
+                    size=28,
+               )
+          ],
+     )
+
+     central_container_row_4 = ft.Row(
+          alignment=ft.MainAxisAlignment.CENTER,
+          controls=[
+               ft.Text(
+                    "75%",
+                    font_family="Seagon Medium",
+                    color="white",
+               )
+          ],
+     )
+
 
 
      main_container.content.controls.append(top_container)
+     main_container.content.controls.append(central_container)
      top_container.content.controls.append(local_search)
      top_container.content.controls.append(btn_search)
+     central_container.content.controls.append(central_container_row_1)
+     central_container.content.controls.append(central_container_row_2)
+     central_container.content.controls.append(central_container_row_3)
+     central_container.content.controls.append(central_container_row_4)
 
      page.add(main_container)
 
