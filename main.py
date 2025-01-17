@@ -49,7 +49,6 @@ def main(page: ft.Page):
      )
 
      central_container = ft.Container(
-          expand=True,
           height=page.window.height * 0.2,
           padding=10,
           content=ft.Column(
@@ -103,16 +102,56 @@ def main(page: ft.Page):
           ],
      )
 
+     lower_container = ft.Container(
+          height=page.window.height * 0.2,
+          content=ft.Column(
 
+          )
+     )
+
+     lower_container_row_1 = ft.Row(
+          alignment=ft.MainAxisAlignment.SPACE_AROUND,
+          controls=[
+               ft.Text(
+                    f"D{i}",
+                    color="white"
+               )for i in range(1,6)
+          ],
+     )
+
+     lower_container_row_2 = ft.Row(
+          alignment=ft.MainAxisAlignment.SPACE_AROUND,
+          controls=[
+               ft.Image(
+                    src=f"http://openweathermap.org/img/wn/0{i}d.png",
+                    width=50,
+                    height=50
+               )for i in range(1,6)
+          ],
+     )
+
+     lower_container_row_3 = ft.Row(
+          alignment=ft.MainAxisAlignment.SPACE_AROUND,
+          controls=[
+               ft.Text(
+                    f"T{i}",
+                    color="white"
+               )for i in range(1,6)
+          ],
+     )
 
      main_container.content.controls.append(top_container)
      main_container.content.controls.append(central_container)
+     main_container.content.controls.append(lower_container)
      top_container.content.controls.append(local_search)
      top_container.content.controls.append(btn_search)
      central_container.content.controls.append(central_container_row_1)
      central_container.content.controls.append(central_container_row_2)
      central_container.content.controls.append(central_container_row_3)
      central_container.content.controls.append(central_container_row_4)
+     lower_container.content.controls.append(lower_container_row_1)
+     lower_container.content.controls.append(lower_container_row_2)
+     lower_container.content.controls.append(lower_container_row_3)
 
      page.add(main_container)
 
