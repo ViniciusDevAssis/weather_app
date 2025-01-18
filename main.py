@@ -17,6 +17,7 @@ def main(page: ft.Page):
      )
 
      top_container = ft.Container(
+          expand=True,
           height=page.window.height * 0.1,
           padding=10,
           content=ft.Row(
@@ -48,6 +49,7 @@ def main(page: ft.Page):
      )
 
      central_container = ft.Container(
+          expand=True,
           height=page.window.height * 0.2,
           padding=10,
           content=ft.Column(
@@ -102,6 +104,7 @@ def main(page: ft.Page):
      )
 
      lower_container = ft.Container(
+          expand=True,
           height=page.window.height * 0.2,
           content=ft.Column(
 
