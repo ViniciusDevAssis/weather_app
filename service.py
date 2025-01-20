@@ -18,7 +18,7 @@ def get_weather_by_city(api_key, city, country):
 
 def get_weather_forecast_by_city(api_key, city, country):
     lat, lon = get_coordinate_by_city(api_key, city, country)
-    url = f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={api_key}"
+    url = f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&units=metric&appid={api_key}"
     request = requests.get(url).json()
     return request
 

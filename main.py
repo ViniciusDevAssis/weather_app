@@ -2,7 +2,7 @@ import flet as ft
 import service as sv
 
 def main(page: ft.Page):
-     def update_weather (e):
+     def update_weather(e):
           city, country = local_search.value.split(',')
           climate_data = sv.get_weather_by_city(sv.api_key, city, country)
           
@@ -11,7 +11,30 @@ def main(page: ft.Page):
           central_container_row_3.controls[0].value = f"{int(climate_data['main']['temp'])}°C"
           central_container_row_4.controls[0].value = f"{climate_data['main']['humidity']}%"
 
+          update_forecast()
           page.update()
+
+     def update_forecast():
+          city, country = local_search.value.split(',')
+          forecast_data = sv.get_weather_forecast_by_city(sv.api_key, city, country)
+
+          daily_forecast = []
+          for item in forecast_data['list']:
+               if '12:00:00' in item['dt_txt']:
+                  daily_forecast.append(item)
+               if len(daily_forecast) == 5:
+                   break
+               
+          for i in range(5):
+               date = daily_forecast[i]['dt_txt'].split()[0]
+               icon = daily_forecast[i]['weather'][0]['icon']
+               temp = int(daily_forecast[i]['main']['temp'])
+
+               lower_container_row_1.controls[i].value = date
+               lower_container_row_2.controls[i].src = f"http://openweathermap.org/img/wn/{icon}.png"
+               lower_container_row_3.controls[i].value = f"{temp}°C"
+
+     page.update()
 
      
      
