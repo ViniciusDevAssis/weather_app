@@ -1,5 +1,6 @@
 import flet as ft
 import service as sv
+from datetime import datetime
 
 def main(page: ft.Page):
      def update_weather(e):
@@ -27,10 +28,11 @@ def main(page: ft.Page):
                
           for i in range(5):
                date = daily_forecast[i]['dt_txt'].split()[0]
+               date_obj = datetime.strptime(date, "%Y-%m-%d")
                icon = daily_forecast[i]['weather'][0]['icon']
                temp = int(daily_forecast[i]['main']['temp'])
 
-               lower_container_row_1.controls[i].value = date
+               lower_container_row_1.controls[i].value = date_obj.strftime("%a")
                lower_container_row_2.controls[i].src = f"http://openweathermap.org/img/wn/{icon}.png"
                lower_container_row_3.controls[i].value = f"{temp}°C"
 
