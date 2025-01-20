@@ -1,6 +1,19 @@
 import flet as ft
+import service as sv
 
 def main(page: ft.Page):
+     def update_weather (e):
+          city, country = local_search.value.split(',')
+          climate_data = sv.get_weather_by_city(sv.api_key, city, country)
+          
+          central_container_row_1.controls[0].value = climate_data['name']
+          central_container_row_2.controls[0].src = f"http://openweathermap.org/img/wn/{climate_data['weather'][0]['icon']}.png"
+          central_container_row_3.controls[0].value = f"{int(climate_data['main']['temp'])}°C"
+          central_container_row_4.controls[0].value = f"{climate_data['main']['humidity']}%"
+
+          page.update()
+
+     
      
      page.bgcolor = "white"
      page.window.full_screen = True
@@ -45,7 +58,8 @@ def main(page: ft.Page):
      )
 
      btn_search = ft.IconButton(
-          icon="Search"
+          icon="Search",
+          on_click=update_weather
      )
 
      central_container = ft.Container(
